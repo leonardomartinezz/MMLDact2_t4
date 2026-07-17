@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Productos</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; color: #000000; padding: 30px; }
+        .container { max-width: 700px; margin: 0 auto; background: #ffffff; padding: 25px; border: 1px solid #cccccc; }
+        h1 { font-size: 1.5em; margin-bottom: 5px; color: #000000; }
+        .autor { font-size: 0.9em; color: #555555; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th { background-color: #e0e0e0; color: #000000; text-align: left; padding: 10px; font-weight: bold; border: 1px solid #cccccc; }
+        td { padding: 10px; border: 1px solid #cccccc; color: #000000; }
+        a.btn { display: inline-block; padding: 8px 15px; background-color: #e0e0e0; color: #000000; text-decoration: none; border: 1px solid #999999; font-weight: bold; margin-top: 15px; }
+        a.btn:hover { background-color: #cccccc; }
+        a.link-detalle { color: #0000ee; text-decoration: underline; font-weight: normal; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Inventario de Productos</h1>
+        <div class="autor" th:text="${autor}">Autor por defecto</div>
+
+        <p>Filtrar: <a href="/productos">Todos</a> | <a href="/productos?categoria=Hardware">Sólo Hardware</a> | <a href="/productos?categoria=Redes">Sólo Redes</a></p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Categoría</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="prod : ${productos}">
+                    <td th:text="${prod.id}">1</td>
+                    <td th:text="${prod.nombre}" style="font-weight: bold;">Producto</td>
+                    <td th:text="'$' + ${prod.precio}">$0.0</td>
+                    <td th:text="${prod.categoria}">Categoría</td>
+                    <td>
+                        <a class="link-detalle" th:href="@{/productos/{id}(id=${prod.id})}">Ver detalle</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a class="btn" href="/productos/nuevo">Agregar Nuevo Producto</a>
+    </div>
+</body>
+</html>

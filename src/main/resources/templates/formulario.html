@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Producto</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 30px; color: #000000; }
+        .container { max-width: 450px; margin: 0 auto; background: #ffffff; padding: 25px; border: 1px solid #cccccc; }
+        h2 { font-size: 1.3em; color: #000000; margin-bottom: 15px; }
+        label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.9em; }
+        input { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #888888; box-sizing: border-box; }
+        button { margin-top: 20px; width: 100%; padding: 10px; background-color: #e0e0e0; color: #000000; border: 1px solid #888888; font-weight: bold; cursor: pointer; }
+        button:hover { background-color: #cccccc; }
+        a { display: block; text-align: center; margin-top: 15px; color: #0000ee; text-decoration: underline; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Agregar Producto</h2>
+        
+        <form th:action="@{/productos/guardar}" th:object="${productoDTO}" method="post">
+            <label>Nombre del Producto:</label>
+            <input type="text" th:field="*{nombre}" required />
+
+            <label>Precio:</label>
+            <input type="number" step="0.01" th:field="*{precio}" required />
+
+            <label>Categoría:</label>
+            <input type="text" th:field="*{categoria}" required />
+
+            <button type="submit">Guardar en el Sistema</button>
+        </form>
+
+        <a href="/productos">Volver a la lista</a>
+    </div>
+</body>
+</html>

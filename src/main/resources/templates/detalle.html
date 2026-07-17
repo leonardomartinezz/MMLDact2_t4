@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Producto</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 30px; color: #000000; }
+        .card { max-width: 400px; margin: 0 auto; background: #ffffff; padding: 25px; border: 1px solid #cccccc; }
+        h2 { font-size: 1.4em; color: #000000; margin-bottom: 10px; }
+        .precio { font-size: 1.5em; font-weight: bold; margin: 15px 0; }
+        .dato { margin: 10px 0; font-size: 0.95em; }
+        a { display: inline-block; margin-top: 20px; text-decoration: underline; color: #0000ee; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div th:if="${producto != null}">
+            <h2 th:text="${producto.nombre}">Nombre</h2>
+            <div class="dato">Categoría: <strong th:text="${producto.categoria}">Categoría</strong></div>
+            <div class="precio" th:text="'$' + ${producto.precio}">$0.00</div>
+            <div class="dato">ID en sistema: <strong th:text="${producto.id}">0</strong></div>
+        </div>
+        <div th:if="${producto == null}">
+            <h2>Producto no encontrado</h2>
+        </div>
+        <br>
+        <a href="/productos">Regresar al inventario</a>
+    </div>
+</body>
+</html>
